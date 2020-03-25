@@ -12,40 +12,40 @@ int main(void)
 	lcd.Controll_ddr = &DDRC;
 	lcd.Controll_pin = &PINC;
 	lcd.Controll_port = &PORTC;
+	lcd.RS = 0b00000001;
+	lcd.RW = 0b00000010;
+	lcd.E  = 0b01000000;
+	
 	lcd.DB_ddr = &DDRD;
 	lcd.DB_pin = &PIND;
 	lcd.DB_port = &PORTD;
+	lcd.data_pins = 0b11111111;
 	
 	LCD_1602A_init(&lcd);
 	
 	
 	while (1)
 	{
-
-		LCD_1602A_send_command(&lcd, FUNCTION_SET | FUNCTION_SET_8BIT_BUS_MODE);
-		_delay_us(4500);
-		LCD_1602A_send_command(&lcd, FUNCTION_SET | FUNCTION_SET_8BIT_BUS_MODE);
-		_delay_us(4500);
-		LCD_1602A_send_command(&lcd, FUNCTION_SET | FUNCTION_SET_8BIT_BUS_MODE);
-		_delay_us(150);
-		LCD_1602A_send_command(&lcd, FUNCTION_SET | FUNCTION_SET_8BIT_BUS_MODE | FUNCTION_SET_2LINE_MODE);
+		//LCD_1602A_print_prog_string(&lcd, PSTR("Hallo !!!"));
 		
-		LCD_1602A_send_command(&lcd, CONTROLL);
-		LCD_1602A_send_command(&lcd, ENTRY_MODE_SET | ENTRY_MODE_SET_INCREMENT);
-		LCD_1602A_send_command(&lcd, CONTROLL | CONTROLL_Display_ON);
-		LCD_1602A_send_command(&lcd,RETURN_HOME);
-		
-		LCD_1602A_clear(&lcd);
-		for (uint8_t i = 0; i < 255; i++)
-		{
-			_delay_ms(1000);
-			LCD_1602A_print_prog_string(&lcd, PSTR("Hallo !!!"));
-			_delay_ms(1000);
-			//LCD_1602A_print_int(&lcd, 27);
-			//LCD_1602A_print_char(&lcd, 0b11011111);
-			LCD_1602A_clear(&lcd);
-		}
-
+		LCD_1602A_set_courser(&lcd,1,1);
+		LCD_1602A_print_char(&lcd, 0x52);
+		_delay_ms(1000);
+		LCD_1602A_set_courser(&lcd,0,1);
+		LCD_1602A_print_char(&lcd, 0x52);
+		_delay_ms(1000);
+		LCD_1602A_set_courser(&lcd,1,5);
+		LCD_1602A_print_char(&lcd, 0x52);
+		_delay_ms(1000);
+		LCD_1602A_set_courser(&lcd,0,5);
+		LCD_1602A_print_char(&lcd, 0x52);
+		_delay_ms(1000);
+		LCD_1602A_set_courser(&lcd,1,10);
+		LCD_1602A_print_char(&lcd, 0x52);
+		_delay_ms(1000);
+		LCD_1602A_set_courser(&lcd,0,10);
+		LCD_1602A_print_char(&lcd, 0x52);
+		_delay_ms(1000);
 	}
 	
 	
