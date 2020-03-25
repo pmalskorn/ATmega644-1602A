@@ -155,6 +155,9 @@
     <Compile Include="LCD_1602A.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="LCD_1602A_config.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
