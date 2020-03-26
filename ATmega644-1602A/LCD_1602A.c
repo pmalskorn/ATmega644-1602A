@@ -14,8 +14,8 @@ void LCD_1602A_set_bus_output(lcd_t *lcd){
 
 
 void LCD_1602A_set_bus_input(lcd_t *lcd){
-	*(lcd->Controll_ddr) &= ~(lcd->E | lcd->RS | lcd->RW);
-	*(lcd->Controll_port) &= ~(lcd->E | lcd->RS | lcd->RW);
+	*(lcd->DB_ddr) &= ~(lcd->data_pins);
+	*(lcd->DB_port) &= ~(lcd->data_pins);
 }
 
 
@@ -71,10 +71,16 @@ void LCD_1602A_print_char(lcd_t *lcd, char c){
 	*(lcd->Controll_port) &= ~(lcd->RS);
 }
 
-void LCD_1602A_print_int(lcd_t *lcd, uint8_t i){
-	LCD_1602A_print_char(lcd, i / 100 + 48);
-	LCD_1602A_print_char(lcd, (i % 100) / 10  + 48);
-	LCD_1602A_print_char(lcd, i % 10  + 48);
+void LCD_1602A_print_int(lcd_t *lcd, uint8_t number){
+	uint8_t hundred = (number / 100);
+	uint8_t ten = (number % 100 / 10);
+	if(hundred){
+		LCD_1602A_print_char(lcd, hundred + 48);
+	}
+	if(ten){
+		LCD_1602A_print_char(lcd, ten + 48);
+	}
+	LCD_1602A_print_char(lcd, number % 10  + 48);
 }
 
 

@@ -29,22 +29,24 @@ int main(void)
 		//LCD_1602A_print_prog_string(&lcd, PSTR("Hallo !!!"));
 		
 		LCD_1602A_set_courser(&lcd,1,1);
-		LCD_1602A_print_char(&lcd, 0x52);
+		LCD_1602A_print_int(&lcd, 0);
 		_delay_ms(1000);
 		LCD_1602A_set_courser(&lcd,0,1);
-		LCD_1602A_print_char(&lcd, 0x52);
+		LCD_1602A_print_int(&lcd, 1);
 		_delay_ms(1000);
 		LCD_1602A_set_courser(&lcd,1,5);
-		LCD_1602A_print_char(&lcd, 0x52);
+		LCD_1602A_print_int(&lcd, 12);
 		_delay_ms(1000);
 		LCD_1602A_set_courser(&lcd,0,5);
-		LCD_1602A_print_char(&lcd, 0x52);
+		LCD_1602A_print_int(&lcd, 155);
 		_delay_ms(1000);
 		LCD_1602A_set_courser(&lcd,1,10);
 		LCD_1602A_print_char(&lcd, 0x52);
 		_delay_ms(1000);
 		LCD_1602A_set_courser(&lcd,0,10);
 		LCD_1602A_print_char(&lcd, 0x52);
+		_delay_ms(1000);
+		LCD_1602A_clear(&lcd);
 		_delay_ms(1000);
 	}
 	
